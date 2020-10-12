@@ -1,13 +1,16 @@
 
-
 import sys
 from cpu import *
 
-if len(sys.argv) == 1:
-    print("Usage: python3 ls8.py 'enter valid filename' ")
+if len(sys.argv) != 2:
+    print("Usage: ls8.py 'valid file path'")
 
 else:
-    cpu = CPU()
+    try:
+        cpu = CPU()
 
-    cpu.load(sys.argv[1])
-    cpu.run()
+        cpu.load(sys.argv[1])
+        cpu.run()
+
+    except FileNotFoundError:
+        print(f"Couldn't open {sys.argv[1]}")
